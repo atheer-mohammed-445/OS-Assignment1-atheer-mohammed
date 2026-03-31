@@ -3,6 +3,8 @@ import java.util.Queue;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 // ANSI Color Codes for enhanced terminal output
 class Colors {
@@ -41,7 +43,7 @@ class Process implements Runnable {
     // Constructor to initialize the process with name, burst time, and time quantum
     // FEATURE 1: Added priority parameter to constructor
     // FEATURE 3: Initialize timing fields
-    public Process(String name, int burstTime, int timeQuantum) {
+    public Process(String name, int burstTime, int timeQuantum, int priority) {
         this.name = name;
         this.burstTime = burstTime;
         this.timeQuantum = timeQuantum;
@@ -283,6 +285,9 @@ public class SchedulerSimulation {
             // FEATURE 2: Increment context switch counter when a new process starts running
             contextSwitchCount++;
 
+            // Retrieve the process associated with the thread from the map
+            Process process = processMap.get(currentThread);
+
             // FEATURE 3: Update waiting time for this process before it runs
             // Calculate how long it waited in queue since it was last added
             process.updateWaitingTime();
@@ -292,7 +297,7 @@ public class SchedulerSimulation {
             System.out.print(Colors.MAGENTA + "│ " + Colors.RESET + Colors.BRIGHT_WHITE + "[" + Colors.RESET);
             int queueCount = 0;
             for (Thread thread : processQueue) {
-                Process process = processMap.get(thread);
+                Process p = processMap.get(thread);
                 if (queueCount > 0) System.out.print(Colors.WHITE + " → " + Colors.RESET);
                 System.out.print(Colors.BRIGHT_CYAN + process.getName() + Colors.RESET);
                 queueCount++;
@@ -313,8 +318,7 @@ public class SchedulerSimulation {
                 System.out.println("Main thread interrupted.");
             }
             
-            // Retrieve the process associated with the thread from the map
-            Process process = processMap.get(currentThread);
+           
             
             // Check if the process is not finished
             if (!process.isFinished()) {
