@@ -554,3 +554,4 @@ Your work will be evaluated based on the following criteria:
 
 Good luck! Start early, commit regularly, and demonstrate your understanding of Java threading through this assignment.
 https://drive.google.com/file/d/1kgnwxOWUll6ckqyAQCcwQE1LO199oop-/view?usp=sharing
+<img width="734" height="137" alt="{E43C98B9-6602-4096-9511-532FCFDA4455}" src="https://github.com/user-attachments/assets/0ab055b2-659f-42a0-ab0b-d6a203d99b0c" />
